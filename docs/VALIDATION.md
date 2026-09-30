@@ -21,6 +21,13 @@ Hasil verifikasi: **107 pengujian lulus**, paket wheel 0.2.0 berhasil dibangun, 
 contoh berhasil diregenerasi. Tes HTTP memakai server localhost sungguhan dengan
 database sementara, sedangkan API eksternal memakai respons mock.
 
+Validasi tambahan melalui GitHub Actions berhasil pada 30 September 2026
+untuk Python 3.11, 3.12, dan 3.13 di Linux (`ubuntu-latest`).
+Ketiga job pengujian berstatus `success` pada commit
+`fe26a415fc64336e9272b668f7968ae9d5f1e109`.
+
+Bukti: [Hasil GitHub Actions](https://github.com/respramon/forex_multi_agent/actions/runs/36652556766).
+
 | Area | Bukti yang diperiksa |
 |---|---|
 | Indikator | Seed EMA, RSI datar/naik/turun, ATR dengan gap, engulfing, pivot tertunda |
@@ -46,8 +53,7 @@ database sementara, sedangkan API eksternal memakai respons mock.
   pengguna. Dokumentasi resmi telah diperiksa; contract tests memakai mock.
 - Build/run Docker di lingkungan ini; berkas Docker/Compose disertakan untuk
   dijalankan dan diperiksa di host pengguna.
-- Matrix CI Python 3.11 dan 3.13 serta Windows/macOS; workflow GitHub menjalankan
-  matrix tersebut setelah diunggah. Pengujian lokal hanya Python 3.12 Linux.
+- Pengujian pada Windows dan macOS belum dilakukan.
 - Profitabilitas strategi, backtest out-of-sample pada data **pasar nyata**, latency/slippage aktual, dan
   ketahanan layanan publik. Simulasi sintetis menguji alur dan invariant perangkat
   lunak, bukan kemampuan memperoleh profit.
