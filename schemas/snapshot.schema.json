@@ -1,0 +1,548 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Forex Agent Snapshot",
+  "description": "Candle time = CLOSE timestamp. Real snapshots use wall-clock freshness. Full engine checks also required.",
+  "type": "object",
+  "properties": {
+    "pair": {
+      "enum": [
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "simulated": {
+      "type": "boolean"
+    },
+    "broker_open_trades": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/broker_trade"
+      }
+    },
+    "frames": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "M5": {
+          "type": "array",
+          "minItems": 250,
+          "maxItems": 5000,
+          "items": {
+            "$ref": "#/$defs/candle"
+          }
+        },
+        "M15": {
+          "type": "array",
+          "minItems": 250,
+          "maxItems": 5000,
+          "items": {
+            "$ref": "#/$defs/candle"
+          }
+        },
+        "H1": {
+          "type": "array",
+          "minItems": 250,
+          "maxItems": 5000,
+          "items": {
+            "$ref": "#/$defs/candle"
+          }
+        },
+        "H4": {
+          "type": "array",
+          "minItems": 250,
+          "maxItems": 5000,
+          "items": {
+            "$ref": "#/$defs/candle"
+          }
+        },
+        "Daily": {
+          "type": "array",
+          "minItems": 250,
+          "maxItems": 5000,
+          "items": {
+            "$ref": "#/$defs/candle"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "quote": {
+      "type": "object",
+      "properties": {
+        "bid": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ask": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tradeable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "bid",
+        "ask",
+        "time",
+        "tradeable"
+      ],
+      "additionalProperties": false
+    },
+    "instrument": {
+      "type": "object",
+      "properties": {
+        "pair": {
+          "enum": [
+            "EUR/USD",
+            "GBP/USD",
+            "USD/JPY",
+            "AUD/USD"
+          ]
+        },
+        "pip_size": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tick_size": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "contract_size": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "units_step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "min_units": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_units": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "margin_rate": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "commission_per_unit_roundtrip": {
+          "type": "number",
+          "minimum": 0
+        },
+        "min_commission_roundtrip": {
+          "type": "number",
+          "minimum": 0
+        },
+        "spec_source": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "pair",
+        "pip_size",
+        "tick_size",
+        "contract_size",
+        "units_step",
+        "min_units",
+        "max_units",
+        "margin_rate"
+      ],
+      "additionalProperties": false
+    },
+    "account": {
+      "type": "object",
+      "properties": {
+        "equity": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "free_margin": {
+          "type": "number",
+          "minimum": 0
+        },
+        "day_start_equity": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "open_trade_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "equity",
+        "free_margin",
+        "day_start_equity",
+        "currency",
+        "as_of",
+        "open_trade_count"
+      ],
+      "additionalProperties": false
+    },
+    "conversion": {
+      "type": "object",
+      "properties": {
+        "account_currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "quote_currency": {
+          "enum": [
+            "USD",
+            "JPY"
+          ]
+        },
+        "loss_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gain_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "position_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "account_currency",
+        "quote_currency",
+        "loss_factor",
+        "gain_factor",
+        "position_factor",
+        "time"
+      ],
+      "additionalProperties": false
+    },
+    "fundamentals": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "ok",
+            "unknown"
+          ]
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string"
+        },
+        "coverage_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "coverage_to": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "currencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "EUR",
+              "USD",
+              "GBP",
+              "JPY",
+              "AUD"
+            ]
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "sentiment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sentiment"
+          }
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ok"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "as_of",
+              "source",
+              "coverage_from",
+              "coverage_to",
+              "currencies",
+              "events"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "pair",
+    "source",
+    "as_of",
+    "simulated",
+    "frames",
+    "quote",
+    "instrument",
+    "account",
+    "conversion",
+    "fundamentals"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "simulated": {
+            "const": false
+          }
+        },
+        "required": [
+          "simulated"
+        ]
+      },
+      "then": {
+        "required": [
+          "broker_open_trades"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "broker_trade": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pair": {
+          "enum": [
+            "EUR/USD",
+            "GBP/USD",
+            "USD/JPY",
+            "AUD/USD"
+          ]
+        },
+        "side": {
+          "enum": [
+            "BUY",
+            "SELL"
+          ]
+        },
+        "units": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "entry": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stop": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "target": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "loss_factor": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "pair",
+        "side",
+        "units",
+        "entry",
+        "stop",
+        "target",
+        "loss_factor"
+      ],
+      "additionalProperties": false
+    },
+    "candle": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "open": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "high": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "low": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "close": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0
+        },
+        "complete": {
+          "const": true
+        }
+      },
+      "required": [
+        "time",
+        "open",
+        "high",
+        "low",
+        "close"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "currency": {
+          "enum": [
+            "EUR",
+            "USD",
+            "GBP",
+            "JPY",
+            "AUD"
+          ]
+        },
+        "impact": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actual": {},
+        "forecast": {},
+        "previous": {}
+      },
+      "required": [
+        "time",
+        "currency",
+        "impact",
+        "title",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "sentiment": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "enum": [
+            "EUR",
+            "USD",
+            "GBP",
+            "JPY",
+            "AUD"
+          ]
+        },
+        "score": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "articles": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "currency",
+        "score",
+        "sample_count",
+        "as_of",
+        "source"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "mode": "journal",
+  "simulated": true,
+  "closed_trades": 1,
+  "open_trades": 0,
+  "net_pnl": 180.0,
+  "win_rate": 1.0,
+  "profit_factor": null,
+  "profit_factor_note": "null jika belum ada kerugian tertutup; bukan bukti profit pasti.",
+  "expectancy_r": 1.844550658480964,
+  "max_closed_pnl_drawdown": 0.0,
+  "by_setup": {
+    "TREND_FOLLOWING": {
+      "trades": 1,
+      "net_pnl": 180.0,
+      "sum_r": 1.844550658480964
+    }
+  },
+  "review": "Bandingkan expectancy R per setup, biaya, disiplin SL, dan sampel. Drawdown ini hanya P/L tertutup."
+}

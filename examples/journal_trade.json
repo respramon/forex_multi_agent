@@ -1,0 +1,14 @@
+{
+  "id": "demo-001",
+  "pair": "EUR/USD",
+  "side": "BUY",
+  "opened_at": "2026-01-15T12:00:00Z",
+  "units": 90000.0,
+  "entry": 1.10147,
+  "stop": 1.10044,
+  "target": 1.1037,
+  "initial_risk": 97.58474193830749,
+  "setup": "TREND_FOLLOWING",
+  "notes": "Contoh sintetis; bukan hasil eksekusi broker.",
+  "simulated": true
+}

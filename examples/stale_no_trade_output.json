@@ -1,0 +1,61 @@
+{
+  "pair": "EUR/USD",
+  "timeframe": "M15",
+  "mode": "signal",
+  "status": "NO_TRADE",
+  "market_condition": "UNKNOWN",
+  "trend": "UNKNOWN",
+  "setup": "NONE",
+  "entry_area": null,
+  "stop_loss": null,
+  "take_profit": null,
+  "risk_reward": null,
+  "reasons": [
+    "Input/data tidak valid: Quote kedaluwarsa atau berasal dari masa depan."
+  ],
+  "confidence": {
+    "score": null,
+    "label": "Belum dinilai",
+    "meaning": "Skor kesesuaian aturan, bukan probabilitas menang."
+  },
+  "risks": [
+    "Trading berleverage dapat merugi; stop loss tidak menjamin batas rugi saat gap."
+  ],
+  "risk": null,
+  "agent_reports": [
+    {
+      "agent": "data_validation",
+      "verdict": "ERROR",
+      "phase": "analysis",
+      "depends_on": [],
+      "reasons": [
+        "Input/data tidak valid: Quote kedaluwarsa atau berasal dari masa depan."
+      ],
+      "warnings": [],
+      "evidence": {}
+    }
+  ],
+  "coordination": {
+    "architecture": "forex_multi_agent",
+    "coordinator": "ForexCoordinator",
+    "decision_policy": "mandatory_veto",
+    "agent_count": 8,
+    "vetoed_by": [
+      "data_validation"
+    ],
+    "not_run": [
+      "technical",
+      "fundamental",
+      "market_conditions",
+      "portfolio",
+      "strategy",
+      "currency_sentiment",
+      "risk"
+    ],
+    "final_status": "NO_TRADE",
+    "publication": {
+      "status": "NOT_REQUESTED"
+    }
+  },
+  "expires_at": null
+}

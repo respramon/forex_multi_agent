@@ -1,0 +1,85 @@
+{
+  "architecture": "forex_multi_agent",
+  "coordinator": "ForexCoordinator",
+  "decision_policy": "mandatory_veto",
+  "agent_count": 8,
+  "forex_only": true,
+  "pairs": [
+    "EUR/USD",
+    "GBP/USD",
+    "USD/JPY",
+    "AUD/USD"
+  ],
+  "execution_enabled": false,
+  "agents": [
+    {
+      "agent": "data_validation",
+      "role": "Validasi pasangan forex, candle tutup, timestamp, quote, dan spesifikasi akun.",
+      "depends_on": [],
+      "method": "deterministic"
+    },
+    {
+      "agent": "technical",
+      "role": "Observasi trend, momentum, struktur, pola harga, dan volatilitas lintas timeframe.",
+      "depends_on": [
+        "data_validation"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "fundamental",
+      "role": "Validasi kalender kedua mata uang dan veto periode berita berdampak tinggi.",
+      "depends_on": [
+        "data_validation"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "market_conditions",
+      "role": "Periksa spread, volatilitas, status pasar, dan jarak quote dari candle pemicu.",
+      "depends_on": [
+        "data_validation",
+        "technical"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "portfolio",
+      "role": "Periksa drawdown harian, eksposur mata uang, jurnal, dan rekonsiliasi posisi broker.",
+      "depends_on": [
+        "data_validation"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "strategy",
+      "role": "Usulkan setup trend following, breakout, atau pullback dengan entry, SL, dan TP.",
+      "depends_on": [
+        "data_validation",
+        "technical",
+        "market_conditions"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "currency_sentiment",
+      "role": "Bandingkan sentimen mata uang dasar dan kuotasi dengan arah kandidat transaksi.",
+      "depends_on": [
+        "fundamental",
+        "strategy"
+      ],
+      "method": "deterministic"
+    },
+    {
+      "agent": "risk",
+      "role": "Hitung units/lot, risiko kas, margin, dan risk/reward bersih setelah biaya.",
+      "depends_on": [
+        "data_validation",
+        "technical",
+        "market_conditions",
+        "strategy"
+      ],
+      "method": "deterministic"
+    }
+  ]
+}

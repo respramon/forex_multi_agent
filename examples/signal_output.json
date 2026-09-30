@@ -1,0 +1,409 @@
+{
+  "pair": "EUR/USD",
+  "timeframe": "M15",
+  "mode": "signal",
+  "status": "BUY",
+  "market_condition": "TRENDING",
+  "trend": "BULLISH",
+  "setup": "TREND_FOLLOWING",
+  "entry_area": [
+    1.10132,
+    1.10147
+  ],
+  "stop_loss": 1.10044,
+  "take_profit": 1.1037,
+  "risk_reward": 2.0066175733238034,
+  "reasons": [
+    "Trend M15: BULLISH; struktur: MIXED.",
+    "Konteks: H1 BULLISH, H4 BULLISH",
+    "Konfirmasi 5/5: trend_multi_timeframe, rsi_zone, macd_momentum, price_action, bollinger_direction; RSI14 69.7, MACD histogram 0.000206844.",
+    "Sentimen tidak lengkap; agen sentimen tidak memberi konfirmasi arah.",
+    "TREND_FOLLOWING: RR bersih 2.01; sizing pada sisi area entry terburuk."
+  ],
+  "confidence": {
+    "score": 100,
+    "label": "Skor kesesuaian aturan",
+    "meaning": "Bukan probabilitas menang; indikator dapat berkorelasi."
+  },
+  "risks": [
+    "Trading berleverage dapat merugi; stop loss tidak menjamin batas rugi saat gap.",
+    "SIMULASI SINTETIS/HISTORIS — bukan harga atau sinyal pasar saat ini.",
+    "Sentimen pasangan tidak lengkap; tidak diasumsikan netral atau dijadikan konfirmasi.",
+    "Setup kedaluwarsa pada candle berikutnya; hitung ulang risiko sebelum entry manual."
+  ],
+  "risk": {
+    "approved": true,
+    "reasons": [],
+    "units": 90000.0,
+    "lots": 0.9,
+    "suggested_units": 90000.0,
+    "contract_size": 100000.0,
+    "risk_budget": 100.0,
+    "estimated_loss": 97.58474193830749,
+    "estimated_net_reward": 195.81525806167616,
+    "risk_fraction_actual": 0.009758474193830748,
+    "net_rr": 2.0066175733238034,
+    "gross_rr": 2.165048543689561,
+    "estimated_margin": 4956.615,
+    "estimated_roundtrip_cost": 4.884741938319709,
+    "stop_distance_pips": 10.299999999998644,
+    "account_currency": "USD",
+    "cost_basis": "Level midpoint; full spread + slippage allowance + roundtrip commission.",
+    "limit_note": "Gap, slippage aktual, swap, dan perubahan konversi dapat melampaui estimasi."
+  },
+  "agent_reports": [
+    {
+      "agent": "data_validation",
+      "verdict": "APPROVE",
+      "phase": "analysis",
+      "depends_on": [],
+      "reasons": [],
+      "warnings": [],
+      "evidence": {
+        "pair": "EUR/USD",
+        "as_of": "2026-01-15T12:00:00Z",
+        "source": "SYNTHETIC — not market data",
+        "simulated": true,
+        "closed_candles": {
+          "M15": 300,
+          "H1": 300,
+          "H4": 300
+        }
+      }
+    },
+    {
+      "agent": "technical",
+      "verdict": "OBSERVE",
+      "phase": "analysis",
+      "depends_on": [
+        "data_validation"
+      ],
+      "reasons": [
+        "Trend M15: BULLISH; struktur: MIXED.",
+        "Konteks: H1 BULLISH, H4 BULLISH"
+      ],
+      "warnings": [],
+      "evidence": {
+        "trends": {
+          "M15": "BULLISH",
+          "H1": "BULLISH",
+          "H4": "BULLISH"
+        },
+        "rsi14": 69.7291375498228,
+        "atr14": 0.0006854982085128704
+      }
+    },
+    {
+      "agent": "fundamental",
+      "verdict": "APPROVE",
+      "phase": "analysis",
+      "depends_on": [
+        "data_validation"
+      ],
+      "reasons": [],
+      "warnings": [
+        "Sentimen pasangan tidak lengkap; tidak diasumsikan netral atau dijadikan konfirmasi."
+      ],
+      "evidence": {
+        "source": "SYNTHETIC TEST CALENDAR",
+        "relevant_events": [],
+        "calendar_verified": true
+      }
+    },
+    {
+      "agent": "market_conditions",
+      "verdict": "APPROVE",
+      "phase": "analysis",
+      "depends_on": [
+        "data_validation",
+        "technical"
+      ],
+      "reasons": [],
+      "warnings": [],
+      "evidence": {
+        "spread": 2.0000000000131024e-05,
+        "atr14": 0.0006854982085128704,
+        "tradeable": true
+      }
+    },
+    {
+      "agent": "portfolio",
+      "verdict": "APPROVE",
+      "phase": "preflight",
+      "depends_on": [
+        "data_validation"
+      ],
+      "reasons": [],
+      "warnings": [],
+      "evidence": {
+        "open_positions": 0,
+        "existing_risk": 0,
+        "new_risk": 0,
+        "currency_risk": {},
+        "cooldown_active": false
+      }
+    },
+    {
+      "agent": "strategy",
+      "verdict": "PROPOSE",
+      "phase": "analysis",
+      "depends_on": [
+        "data_validation",
+        "technical",
+        "market_conditions"
+      ],
+      "reasons": [
+        "Konfirmasi 5/5: trend_multi_timeframe, rsi_zone, macd_momentum, price_action, bollinger_direction; RSI14 69.7, MACD histogram 0.000206844."
+      ],
+      "warnings": [],
+      "evidence": {
+        "setup": "TREND_FOLLOWING",
+        "side": "BUY",
+        "confirmations": [
+          "trend_multi_timeframe",
+          "rsi_zone",
+          "macd_momentum",
+          "price_action",
+          "bollinger_direction"
+        ],
+        "quality_score": 100
+      }
+    },
+    {
+      "agent": "currency_sentiment",
+      "verdict": "ABSTAIN",
+      "phase": "analysis",
+      "depends_on": [
+        "fundamental",
+        "strategy"
+      ],
+      "reasons": [
+        "Sentimen tidak lengkap; agen sentimen tidak memberi konfirmasi arah."
+      ],
+      "warnings": [],
+      "evidence": {
+        "pair_sentiment": null,
+        "candidate_side": "BUY"
+      }
+    },
+    {
+      "agent": "risk",
+      "verdict": "APPROVE",
+      "phase": "analysis",
+      "depends_on": [
+        "data_validation",
+        "technical",
+        "market_conditions",
+        "strategy"
+      ],
+      "reasons": [],
+      "warnings": [],
+      "evidence": {
+        "units": 90000.0,
+        "lots": 0.9,
+        "risk_budget": 100.0,
+        "estimated_loss": 97.58474193830749,
+        "estimated_margin": 4956.615,
+        "net_rr": 2.0066175733238034,
+        "account_currency": "USD"
+      }
+    },
+    {
+      "agent": "portfolio",
+      "verdict": "APPROVE",
+      "phase": "sized",
+      "depends_on": [
+        "data_validation",
+        "risk"
+      ],
+      "reasons": [],
+      "warnings": [],
+      "evidence": {
+        "open_positions": 0,
+        "existing_risk": 0,
+        "new_risk": 97.58474193830749,
+        "currency_risk": {},
+        "cooldown_active": false
+      }
+    }
+  ],
+  "coordination": {
+    "architecture": "forex_multi_agent",
+    "coordinator": "ForexCoordinator",
+    "decision_policy": "mandatory_veto",
+    "agent_count": 8,
+    "vetoed_by": [],
+    "not_run": [],
+    "final_status": "BUY",
+    "publication": {
+      "status": "RECORDED"
+    }
+  },
+  "as_of": "2026-01-15T12:00:00Z",
+  "simulated": true,
+  "data_source": "SYNTHETIC — not market data",
+  "technical": {
+    "M15": {
+      "close": 1.1013964929812459,
+      "ema20": 1.1001379162369918,
+      "ema50": 1.0996152141215103,
+      "ema200": 1.0982031818612121,
+      "sma20": 1.0996909300900062,
+      "rsi14": 69.7291375498228,
+      "macd": 0.0005331470157596829,
+      "macd_signal": 0.0003263028873321049,
+      "macd_histogram": 0.000206844128427578,
+      "bb_lower": 1.0974563750868886,
+      "bb_middle": 1.0996909300900062,
+      "bb_upper": 1.1019254850931237,
+      "atr14": 0.0006854982085128704,
+      "atr_reference": 0.000687540038107403,
+      "trend": "BULLISH",
+      "structure": "MIXED",
+      "support": [
+        1.1001179280412863,
+        1.0994143660365583,
+        1.0990481808675854,
+        1.0986353773973736,
+        1.0985133707782109
+      ],
+      "resistance": [
+        1.1014193953785465
+      ],
+      "channel_high": 1.1014193953785465,
+      "channel_low": 1.0977788508977593,
+      "fibonacci": {
+        "0.382": 1.1000287073868857,
+        "0.5": 1.099599123138153,
+        "0.618": 1.09916953888942
+      },
+      "fib_anchors": {
+        "low": 1.0977788508977593,
+        "high": 1.1014193953785465,
+        "direction": "up"
+      },
+      "patterns": [],
+      "smc": [
+        "buy_side_sweep_proxy"
+      ]
+    },
+    "H1": {
+      "close": 1.1013964929812459,
+      "ema20": 1.099403994953656,
+      "ema50": 1.098265466310365,
+      "ema200": 1.0928425755153657,
+      "sma20": 1.0994367885163612,
+      "rsi14": 61.509866705499704,
+      "macd": 0.0006103652986773067,
+      "macd_signal": 0.0004883820204122578,
+      "macd_histogram": 0.0001219832782650489,
+      "bb_lower": 1.0972272523353426,
+      "bb_middle": 1.0994367885163612,
+      "bb_upper": 1.1016463246973798,
+      "atr14": 0.001352068874258768,
+      "atr_reference": 0.0013492839228393702,
+      "trend": "BULLISH",
+      "structure": "HH_HL",
+      "support": [
+        1.0977788508977593,
+        1.0970625527865911,
+        1.0963577043558235,
+        1.0958185120040262,
+        1.0951707050101243
+      ],
+      "resistance": [],
+      "channel_high": 1.1014193953785465,
+      "channel_low": 1.0970625527865911,
+      "fibonacci": {
+        "0.382": 1.0984851881155377,
+        "0.5": 1.097976016948615,
+        "0.618": 1.097466845781692
+      },
+      "fib_anchors": {
+        "low": 1.0958185120040262,
+        "high": 1.1001335218932036,
+        "direction": "up"
+      },
+      "patterns": [],
+      "smc": [
+        "bullish_fvg_proxy"
+      ]
+    },
+    "H4": {
+      "close": 1.1013964929812459,
+      "ema20": 1.0973252591727158,
+      "ema50": 1.0929683735662663,
+      "ema200": 1.0713480349596454,
+      "sma20": 1.097247978760348,
+      "rsi14": 59.61716825855824,
+      "macd": 0.0020716725882532483,
+      "macd_signal": 0.0020212365138463613,
+      "macd_histogram": 5.043607440688696e-05,
+      "bb_lower": 1.093068901953969,
+      "bb_middle": 1.097247978760348,
+      "bb_upper": 1.101427055566727,
+      "atr14": 0.0030966784940424587,
+      "atr_reference": 0.0030199731071262827,
+      "trend": "BULLISH",
+      "structure": "MIXED",
+      "support": [],
+      "resistance": [],
+      "channel_high": 1.101250790727312,
+      "channel_low": 1.0920901339653994,
+      "fibonacci": {},
+      "fib_anchors": null,
+      "patterns": [
+        "bullish_engulfing"
+      ],
+      "smc": []
+    }
+  },
+  "fundamentals": {
+    "blocks": [],
+    "warnings": [
+      "Sentimen pasangan tidak lengkap; tidak diasumsikan netral atau dijadikan konfirmasi."
+    ],
+    "events": [],
+    "currency_sentiment": {},
+    "pair_sentiment": null,
+    "source": "SYNTHETIC TEST CALENDAR",
+    "interpretation": "Sentimen hanya konteks; actual vs forecast tidak otomatis menentukan arah harga."
+  },
+  "spread": 2.0000000000131024e-05,
+  "portfolio_state": {
+    "trades_today": 0,
+    "daily_pnl": 0,
+    "consecutive_losses": 0,
+    "open_risk": 0,
+    "currency_risk": {},
+    "cooldown_active": false,
+    "open_positions": 0,
+    "timezone": "Asia/Bangkok"
+  },
+  "checks": {
+    "side": "BUY",
+    "setup": "TREND_FOLLOWING",
+    "confirmations": [
+      "trend_multi_timeframe",
+      "rsi_zone",
+      "macd_momentum",
+      "price_action",
+      "bollinger_direction"
+    ],
+    "checks": {
+      "trend_multi_timeframe": true,
+      "rsi_zone": true,
+      "macd_momentum": true,
+      "price_action": true,
+      "bollinger_direction": true
+    },
+    "reason": null,
+    "smc_context": [
+      "buy_side_sweep_proxy"
+    ],
+    "quality_score": 100
+  },
+  "side": "BUY",
+  "expires_at": "2026-01-15T12:15:00Z",
+  "signal_id": "90a9593fb7910f1665ba0045bd78347f9a824ff780b4e82e371b2cf074319848"
+}

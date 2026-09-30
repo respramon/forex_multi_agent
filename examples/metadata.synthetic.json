@@ -1,0 +1,54 @@
+{
+  "pair": "EUR/USD",
+  "source": "SYNTHETIC — not market data",
+  "simulated": true,
+  "as_of": "2026-01-15T12:00:00Z",
+  "quote": {
+    "bid": 1.1013864929812458,
+    "ask": 1.101406492981246,
+    "time": "2026-01-15T12:00:00Z",
+    "tradeable": true
+  },
+  "instrument": {
+    "pair": "EUR/USD",
+    "pip_size": 0.0001,
+    "tick_size": 1e-05,
+    "contract_size": 100000,
+    "units_step": 1000,
+    "min_units": 1000,
+    "max_units": 1000000,
+    "margin_rate": 0.05,
+    "spec_source": "SYNTHETIC BROKER — replace for real use",
+    "commission_per_unit_roundtrip": 0,
+    "min_commission_roundtrip": 0
+  },
+  "account": {
+    "currency": "USD",
+    "equity": 10000,
+    "free_margin": 10000,
+    "day_start_equity": 10000,
+    "open_trade_count": 0,
+    "as_of": "2026-01-15T12:00:00Z"
+  },
+  "conversion": {
+    "account_currency": "USD",
+    "quote_currency": "USD",
+    "loss_factor": 1,
+    "gain_factor": 1,
+    "position_factor": 1,
+    "time": "2026-01-15T12:00:00Z"
+  },
+  "fundamentals": {
+    "status": "ok",
+    "as_of": "2026-01-15T12:00:00Z",
+    "source": "SYNTHETIC TEST CALENDAR",
+    "coverage_from": "2026-01-14T12:00:00Z",
+    "coverage_to": "2026-01-16T12:00:00Z",
+    "currencies": [
+      "EUR",
+      "USD"
+    ],
+    "events": [],
+    "sentiment": []
+  }
+}
