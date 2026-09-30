@@ -10,8 +10,8 @@ menjelaskan keputusan tim yang telah diperiksa mesin.
 **Mulai tanpa API key:** Python 3.11+ dan standard library sudah cukup.
 
 ```bash
-git clone https://github.com/respramon/forex_ai_agent.git
-cd forex_ai_agent
+git clone https://github.com/respramon/forex_multi_agent.git
+cd forex_multi_agent
 python -m forex_agent agents
 python -m forex_agent demo
 python -m forex_agent demo --scenario news
