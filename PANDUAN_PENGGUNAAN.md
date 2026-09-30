@@ -124,7 +124,7 @@ python -m forex_agent predict --model data/model.synthetic.json --data examples/
 
 | Gejala | Tindakan |
 |---|---|
-| `No module named forex_agent` | Pastikan terminal berada di root hasil clone (`cd forex_ai_agent`) dan memakai Python 3.11+. |
+| `No module named forex_agent` | Pastikan terminal berada di root hasil clone (`cd forex_multi_agent`) dan memakai Python 3.11+. |
 | `NO_TRADE` pada percobaan ulang | Periksa alasan pada output; snapshot dan database yang sama bisa dianggap sinyal duplikat. |
 | `NO_TRADE` atau penolakan pada data sendiri | Periksa usia quote/akun/konversi, candle yang sudah tutup, cakupan dan usia kalender, serta kecocokan posisi broker dengan jurnal. |
 | `fetch-oanda` gagal | Periksa environment variables, hak akses akun/instrumen, dan file kalender yang diberikan lewat `--fundamentals`. |
