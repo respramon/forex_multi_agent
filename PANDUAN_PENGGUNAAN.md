@@ -10,8 +10,8 @@ Yang dibutuhkan: **Python 3.11 atau lebih baru** dan Git. Untuk demo, tidak perl
 
 ```bash
 python --version
-git clone https://github.com/respramon/forex_ai_agent.git
-cd forex_ai_agent
+git clone https://github.com/respramon/forex_multi_agent.git
+cd forex_multi_agent
 python -m forex_agent agents
 python -m forex_agent demo
 ```
